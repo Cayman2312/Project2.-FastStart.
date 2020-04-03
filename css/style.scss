@@ -1,6 +1,24 @@
 @import 'mixins.scss';
 @import 'font-face.scss';
 
+@keyframes loader {
+  0% {
+    transform: rotate(0) scale(1);;
+  }
+  25% {
+    transform: rotate(90deg) scale(1.2);
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);;
+  }
+}
+
 $mainFont: Awesome, Arial, Helvetica, sans-serif;
 $colorButton: #3eb0f7;
 $colorButtonDark: #1f96e0;
@@ -21,6 +39,35 @@ h1 {
 
 p {
   padding-bottom: 1em;
+}
+
+.loader-box {
+  position: fixed;
+  background-color: #aaaa;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 1s;
+
+  &.hide {
+    background-color: #aaa0;
+  }
+
+  & .loader {
+    background-image: url('/images/ring.png');
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    animation: loader 4s infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+  }
 }
 
 .overlay {

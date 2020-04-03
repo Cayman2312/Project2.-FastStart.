@@ -1,4 +1,34 @@
-window.onload = function() {
+//loader
+class Loader {
+  constructor() {
+    this.$loaderBox = document.querySelector('.loader-box');
+    this.$loader = this.$loaderBox.querySelector('.loader');
+  }
+
+  hideLoader() {
+    this.$loaderBox.classList.add('hide');
+    setTimeout(() => {
+      this.$loader.style.display = 'none';
+    }, 300);
+    setTimeout(() => {
+      this.$loaderBox.style.display = 'none';
+    }, 800);
+  }
+}
+
+let delay = 1;
+let loader = new Loader;
+let xhr = new XMLHttpRequest();
+xhr.open('GET', `/handlers/handler-index.php?delay=${delay}`);
+xhr.send();
+
+xhr.addEventListener('load', () => {
+  loader.hideLoader();
+})
+
+
+
+window.onload = function () {
   //слайдер
   var swiper = new Swiper('.swiper-container', {
     spaceBetween: 30,
@@ -13,7 +43,7 @@ window.onload = function() {
 
   document
     .querySelector('.navbar__toggle')
-    .addEventListener('click', function() {
+    .addEventListener('click', function () {
       $navbarMenu.classList.toggle('hide');
     });
 
@@ -27,7 +57,7 @@ window.onload = function() {
     $navbar.style.zIndex = '100';
   }
 
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', function () {
     if ($navbar.getBoundingClientRect().top < 0) {
       $navbar.style.position = 'fixed';
       $navbar.style.top = '0';
@@ -66,13 +96,13 @@ window.onload = function() {
     }
   }
 
-  document.querySelectorAll('.scrollTo').forEach(function(item) {
+  document.querySelectorAll('.scrollTo').forEach(function (item) {
     item.addEventListener('click', function menuClick(e) {
-      document.querySelectorAll('.scrollTo').forEach(function(item) {
+      document.querySelectorAll('.scrollTo').forEach(function (item) {
         item.removeEventListener('click', menuClick);
       });
       setTimeout(() => {
-        document.querySelectorAll('.scrollTo').forEach(function(item) {
+        document.querySelectorAll('.scrollTo').forEach(function (item) {
           item.addEventListener('click', menuClick);
         });
       }, 4000);
@@ -95,7 +125,7 @@ window.onload = function() {
   let menu = [];
   document
     .querySelectorAll('.navbar__menu-item.scrollTo')
-    .forEach(function(item, index) {
+    .forEach(function (item, index) {
       let href = item.getAttribute('href');
 
       menu[index] = document.querySelector('.' + href.slice(1));
@@ -117,7 +147,7 @@ window.onload = function() {
     let currentPosition = Math.round(
       (100 *
         (-document.body.getBoundingClientRect().top + window.innerHeight)) /
-        document.body.clientHeight
+      document.body.clientHeight
     );
     $scrollBar.style.width = currentPosition + '%';
   });
@@ -142,13 +172,13 @@ window.onload = function() {
     } else {
       i -= 1;
     }
-    document.querySelectorAll('.overlay').forEach(function(item) {
+    document.querySelectorAll('.overlay').forEach(function (item) {
       item.style.backgroundPositionY = i / 2 + 'px';
     });
   });
 
   //добавляем появление элементов при загрузке страницы
-  document.querySelectorAll('.start').forEach(function(item) {
+  document.querySelectorAll('.start').forEach(function (item) {
     if (
       item.getBoundingClientRect().bottom > 0 &&
       window.innerHeight - item.getBoundingClientRect().top > 0
@@ -164,7 +194,7 @@ window.onload = function() {
       window.removeEventListener('scroll', elementsAppear);
       return;
     }
-    $items.forEach(function(item) {
+    $items.forEach(function (item) {
       if (
         item.getBoundingClientRect().bottom > 0 &&
         window.innerHeight - item.getBoundingClientRect().top > 0
@@ -175,10 +205,10 @@ window.onload = function() {
   });
 
   //добавляем валидацию данных к первой форме
-  document.forms[0].addEventListener('submit', function(e) {
+  document.forms[0].addEventListener('submit', function (e) {
     let $error = document.querySelector('p.error-text');
 
-    this.querySelectorAll('input').forEach(function(item) {
+    this.querySelectorAll('input').forEach(function (item) {
       if (item.value == '') {
         item.classList.add('input-error');
         $error.classList.remove('hide');
@@ -190,7 +220,7 @@ window.onload = function() {
     let $fio = this.elements.fio;
     let $email = this.elements.email;
 
-    [$fio, $email].forEach(function(item) {
+    [$fio, $email].forEach(function (item) {
       item.addEventListener('input', () => {
         if (item.value == '') {
           item.classList.add('input-error');
@@ -236,7 +266,7 @@ window.onload = function() {
   });
 
   //добавляем валидацию данных ко второй форме
-  document.forms[1].addEventListener('submit', function(e) {
+  document.forms[1].addEventListener('submit', function (e) {
     let $error = document.querySelector('p.error-text--2');
 
     for (let i = 0; i < this.elements.length - 1; i++) {

@@ -9,10 +9,10 @@ if (isset($_GET['fio']) && isset($_GET['email']) && !empty($_GET['fio']) && !emp
   $result = mysqli_query($link, $query);
 
   if ($result) {
-    echo "true";
+    echo true;
   } else {
-    echo "false";
+    echo false;
   }
 } else {
-  echo "false";
+  echo false;
 }
