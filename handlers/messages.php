@@ -8,10 +8,10 @@ if (isset($_POST['fio'])) {
   $result = mysqli_query($link, $qr);
 
   if ($result) {
-    echo "true";
+    echo true;
   } else {
-    echo "false";
+    echo false;
   }
 } else {
-  echo "false";
+  echo false;
 }
