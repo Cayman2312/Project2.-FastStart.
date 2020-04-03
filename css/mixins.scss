@@ -1,0 +1,36 @@
+@mixin adaptive($device) {
+  @if $device == phone {
+    @media (max-width: 575px) {
+      @content;
+    }
+  } @else if $device == smartphone {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $device == tablet {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $device == notebook {
+    @media (max-width: 1199px) {
+      @content;
+    }
+  } @else if $device == desktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($direction) {
+  @if $direction == row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } @else if $direction == column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
