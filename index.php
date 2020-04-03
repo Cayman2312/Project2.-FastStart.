@@ -1,6 +1,7 @@
 <?php
 $title = 'Главная';
 include('parts/header.php');
+include('parts/loader.php');
 ?>
 
 <div class="about wrapper">
