@@ -9,8 +9,10 @@ class Loader {
     this.$loaderBox.classList.add('hide');
     setTimeout(() => {
       this.$loader.style.display = 'none';
-    }, 300)
-
+    }, 300);
+    setTimeout(() => {
+      this.$loaderBox.style.display = 'none';
+    }, 800);
   }
 }
 
